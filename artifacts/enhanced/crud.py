@@ -1,3 +1,18 @@
+# crud.py
+# Enhanced CRUD module for the Grazioso Salvare Animal Shelter Dashboard
+# Author: Ethan Chapman
+# Course: CS 499 - Computer Science Capstone
+# Southern New Hampshire University
+#
+# This module provides a full-featured interface for interacting with the
+# Austin Animal Center (AAC) MongoDB collection. It extends the original
+# CS 340 CRUD module with the following enhancements:
+#   - Automatic index creation on frequently queried fields (Milestone 4)
+#   - Aggregation pipeline support for server-side grouped counts (Milestone 4)
+#   - Distinct value queries for dynamic dropdown population (Milestone 4)
+#   - Bulk import with duplicate handling via ordered=False (Milestone 4)
+#   - Type hints, input validation, and logging (Milestone 2)
+
 import logging
 from pymongo import MongoClient, ASCENDING, errors as pymongo_errors
 from pymongo.errors import PyMongoError, BulkWriteError
