@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ethan Chapman — CS 499 ePortfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAFAF8;
+      --surface: #FFFFFF;
+      --text: #1A1A1A;
+      --text-muted: #5A5A5A;
+      --accent: #2D5A27;
+      --accent-light: #E8F0E6;
+      --accent-hover: #3D7A35;
+      --border: #E2E0DC;
+      --code-bg: #F4F3F0;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-lg: 0 4px 16px rgba(0,0,0,0.08);
+      --serif: 'Source Serif 4', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --max-w: 860px;
+      --transition: 0.2s ease;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,250,248,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    nav .logo {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    nav .nav-links { display: flex; gap: 0.25rem; }
+    nav .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      transition: all var(--transition);
+    }
+    nav .nav-links a:hover {
+      color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+    }
+    .hero .overline {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      line-height: 1.8;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    section + section { border-top: 1px solid var(--border); }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    section h2 {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      line-height: 1.3;
+    }
+    section p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+    section p:last-child { margin-bottom: 0; }
+
+    /* ── CARDS ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: all var(--transition);
+    }
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .card .card-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+    .card h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── FILE LIST ── */
+    .file-list {
+      margin-top: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .file-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+    .file-item:last-child { border-bottom: none; }
+    .file-item:hover { background: var(--accent-light); }
+    .file-item .file-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .file-item .file-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    .file-icon.py { background: #306998; }
+    .file-icon.nb { background: #E67E22; }
+    .file-icon.docx { background: #2B579A; }
+    .file-item .file-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .file-item .file-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .file-item a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+    .file-item a:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* ── CODE BLOCK ── */
+    .code-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .code-panel {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .code-panel .panel-header {
+      padding: 0.6rem 1rem;
+      background: var(--border);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .code-panel pre {
+      padding: 1rem;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    /* ── OUTCOMES TABLE ── */
+    .outcomes-table {
+      width: 100%;
+      margin-top: 1.5rem;
+      border-collapse: collapse;
+      background: var(--surface);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .outcomes-table th {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--code-bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .outcomes-table td {
+      padding: 0.75rem 1rem;
+      font-size: 0.88rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .outcomes-table tr:last-child td { border-bottom: none; }
+    .outcomes-table .check {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    footer p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      nav .nav-links { display: none; }
+      .code-compare { grid-template-columns: 1fr; }
+      .hero { padding: 3rem 1.25rem 2rem; }
+      section { padding: 2rem 1.25rem; }
+    }
+
+    /* mobile nav toggle */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text);
+    }
+    @media (max-width: 700px) {
+      .mobile-toggle { display: block; }
+      nav .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 56px;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: 0.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════ NAV ════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">Ethan Chapman</a>
+    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="#self-assessment">Self-Assessment</a>
+      <a href="#code-review">Code Review</a>
+      <a href="#enhancement-1">Enhancement 1</a>
+      <a href="#enhancement-2">Enhancement 2</a>
+      <a href="#enhancement-3">Enhancement 3</a>
+      <a href="#outcomes">Outcomes</a>
+      <a href="#files">Files</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<div class="hero">
+  <div class="overline">CS 499 · Computer Science Capstone</div>
+  <h1>ePortfolio</h1>
+  <p class="subtitle">
+    A capstone portfolio demonstrating growth in software design, algorithms, and database engineering — built around the Grazioso Salvare Animal Shelter Dashboard.
+  </p>
+</div>
+
+<!-- ════════ SELF-ASSESSMENT ════════ -->
+<section id="self-assessment">
+  <div class="section-label">Professional Self-Assessment</div>
+  <h2>Introduction</h2>
+  <p>
+    Completing the Computer Science program at Southern New Hampshire University and developing this ePortfolio has been a process of consolidating skills that were initially learned in isolation into a coherent professional identity. Early coursework introduced individual topics such as data structures, database design, and software testing as separate disciplines. The capstone experience required integrating those disciplines into a single artifact and reflecting on how they connect to one another and to the broader demands of the field.
+  </p>
+  <p>
+    My professional goal is to work in data science and analytics, a specialization that sits at the intersection of software engineering, database management, and algorithmic thinking. The Grazioso Salvare Animal Shelter Dashboard, which serves as the artifact for all three enhancement categories, is a data-driven application that queries a MongoDB database, applies filtering and aggregation logic, and presents interactive visualizations to support decision-making. Building and refining this system across three milestones gave me a concrete vehicle for demonstrating the skills that a data science role demands.
+  </p>
+
+  <h2 style="margin-top:2rem;">Collaborating in a Team Environment</h2>
+  <p>
+    Several courses required collaboration that shaped how I approach team-based development. In CS 250 (Software Development Lifecycle), I worked within an Agile framework that emphasized iterative feedback, sprint planning, and aligning technical work with stakeholder needs. The code review at the beginning of this capstone reinforced that lesson — walking through my own code as if presenting to a peer required me to articulate design decisions clearly and identify weaknesses honestly. The capstone also required using GitHub as a version control and portfolio platform, a core collaboration tool in professional software development.
+  </p>
+
+  <h2 style="margin-top:2rem;">Communicating with Stakeholders</h2>
+  <p>
+    The narrative documents written for each milestone required translating implementation details into language that explains not just what was changed but why the change matters. The dashboard itself is a form of stakeholder communication — designed for staff who need to identify animals suitable for rescue training. The interface presents complex query results through a data table, pie chart, bar chart, and geolocation map, each chosen to answer a specific question the user is trying to ask.
+  </p>
+
+  <h2 style="margin-top:2rem;">Data Structures and Algorithms</h2>
+  <p>
+    The original dashboard used identical placeholder filters for all three rescue categories. The enhancement replaced this with a RESCUE_CRITERIA data structure encoding each category as a specification object with breed lists, sex requirements, and age bounds. The apply_rescue_filter() function composes a compound boolean mask from these specifications. This demonstrated that the choice of data structure directly affects the clarity and correctness of the algorithm that operates on it.
+  </p>
+
+  <h2 style="margin-top:2rem;">Software Engineering and Database</h2>
+  <p>
+    The software engineering enhancement connected the dashboard to MongoDB through the CRUD module, replaced print statements with logging, added type hints and input validation, and extracted filter definitions into a standalone function. The database enhancement added indexing, aggregation pipelines, bulk import with duplicate handling, and distinct value queries — transforming MongoDB from a flat file store into a properly utilized database engine.
+  </p>
+
+  <h2 style="margin-top:2rem;">Security</h2>
+  <p>
+    Security considerations were addressed at multiple levels: credentials encoded with quote_plus before URI embedding, argument validation on every public CRUD method, and an empty-query guard on delete() to prevent accidental collection wipes. These reflect the kind of defensive thinking that prevents common categories of data loss in real-world applications.
+  </p>
+</section>
+
+<!-- ════════ CODE REVIEW ════════ -->
+<section id="code-review">
+  <div class="section-label">Milestone One</div>
+  <h2>Code Review</h2>
+  <p>
+    The code review analyzed the original Grazioso Salvare Dashboard artifact from CS 340 across three areas required by the capstone: a walkthrough of existing functionality, a code analysis targeting structure, logic, efficiency, security, testing, and documentation, and an enhancement plan mapping planned improvements to course outcomes across all three categories.
+  </p>
+  <p>
+    The analysis identified several critical issues: the dashboard never used the CRUD module (loading data from CSV instead), all three rescue filters returned identical results due to placeholder logic, error handling relied on bare print() statements, and there were no input validation guards on any CRUD method. The enhancement plan outlined three categories of improvement — software design and engineering, algorithms and data structures, and databases — each mapped to specific course outcomes.
+  </p>
+  <div class="file-list" style="margin-top:1rem;">
+    <div class="file-item">
+      <div class="file-info">
+        <div class="file-icon docx">DOC</div>
+        <div>
+          <div class="file-name">Code_Review.docx</div>
+          <div class="file-desc">Written code review: existing functionality, code analysis, and enhancement plan</div>
+        </div>
+      </div>
+      <a href="docs/Code_Review.docx" target="_blank">Download</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ ENHANCEMENT 1 ════════ -->
+<section id="enhancement-1">
+  <div class="section-label">Milestone Two</div>
+  <h2>Enhancement One: Software Design &amp; Engineering</h2>
+  <p>
+    The most significant defect in the original code was that all three rescue-type filters used identical conditions with placeholder comments. The enhanced version implements the official Grazioso Salvare breed, sex, and age-range criteria for each rescue type. The dashboard was also reconnected to MongoDB through the CRUD module — the original code loaded data from a CSV and never used crud.py at all.
+  </p>
+  <p>
+    Additional improvements included extracting filter definitions into a standalone <code>build_filter_map()</code> function, replacing <code>print()</code> with Python's <code>logging</code> module, adding type hints and input validation to all CRUD methods, and replacing the deprecated <code>ismaster</code> command with <code>ping</code>.
+  </p>
+
+  <div class="code-compare">
+    <div class="code-panel">
+      <div class="panel-header">Original crud.py</div>
+      <pre>class AnimalShelter:
+    def __init__(self, user, passwd, ...):
+        self.client = MongoClient(uri)
+        self.client.admin.command('ismaster')
+        print(f" Connected to MongoDB...")
+
+    def read(self, query):
+        if not self.client:
+            return []
+        try:
+            return list(self.collection.find(query))
+        except Exception as e:
+            print(f" Read failed: {e}")
+            return []</pre>
+    </div>
+    <div class="code-panel">
+      <div class="panel-header">Enhanced crud.py</div>
+      <pre>class AnimalShelter:
+    def __init__(self, user: str, passwd: str, ...) -> None:
+        self.client = MongoClient(uri, serverSelectionTimeoutMS=5000)
+        self.client.admin.command("ismaster")
+        logger.info("Connected to MongoDB as user '%s'.", user)
+        self._ensure_indexes()
+
+    def read(self, query: dict, projection: dict | None = None) -> list:
+        if not isinstance(query, dict):
+            logger.error("read() requires a dict query.")
+            return []
+        cursor = self.collection.find(query, projection)
+        return list(cursor)</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ ENHANCEMENT 2 ════════ -->
+<section id="enhancement-2">
+  <div class="section-label">Milestone Three</div>
+  <h2>Enhancement Two: Algorithms &amp; Data Structures</h2>
+  <p>
+    The original <code>filter_map</code> pre-computed filtered DataFrames at module load time, and all three rescue categories returned identical results — thousands of undifferentiated dog records. The enhancement introduced a <code>RESCUE_CRITERIA</code> data structure that encodes each rescue category as a specification object, and an <code>apply_rescue_filter()</code> function that composes a compound boolean mask from those specifications.
+  </p>
+  <p>
+    Validation against the AAC dataset confirmed meaningfully distinct results: Water Rescue returns 17 records, Mountain or Wilderness Rescue returns 11, and Disaster Rescue or Individual Tracking returns 17. The filtering algorithm became self-documenting — each condition in the boolean mask directly mirrors the specification it encodes.
+  </p>
+
+  <div class="code-compare">
+    <div class="code-panel">
+      <div class="panel-header">Original Filters</div>
+      <pre># All three filters return identical results
+filter_map = {
+    "Reset": df_csv,
+    "Water Rescue": df_csv[df_csv["animal_type"] == "Dog"],
+    "Mountain or Wilderness Rescue":
+        df_csv[df_csv["animal_type"] == "Dog"],
+    "Disaster Rescue or Individual Tracking":
+        df_csv[df_csv["animal_type"] == "Dog"],
+}</pre>
+    </div>
+    <div class="code-panel">
+      <div class="panel-header">Enhanced Filters</div>
+      <pre>"Water Rescue": {
+    "animal_type": "Dog",
+    "sex_upon_outcome": "Intact Female",
+    "age_upon_outcome_in_weeks": {"$gte": 26, "$lte": 156},
+    "breed": {"$in": [
+        "Labrador Retriever Mix",
+        "Chesapeake Bay Retriever",
+        "Newfoundland",
+    ]},
+},
+# Mountain/Wilderness and Disaster filters
+# each specify distinct breeds, sex, and age ranges</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ ENHANCEMENT 3 ════════ -->
+<section id="enhancement-3">
+  <div class="section-label">Milestone Four</div>
+  <h2>Enhancement Three: Databases</h2>
+  <p>
+    The original implementation treated MongoDB as a flat file store — no indexes, no aggregation, no bulk operations. The enhancement added five single-field indexes and two compound indexes that mirror the dashboard's rescue filter queries. An <code>aggregate_outcomes()</code> method runs a <code>$match → $group → $sort</code> pipeline inside the database engine, and a <code>bulk_import()</code> utility handles batch insertion with duplicate resilience via <code>ordered=False</code>.
+  </p>
+  <p>
+    On the dashboard side, filter definitions were rewritten as MongoDB query dictionaries passed directly to <code>shelter.read()</code> and <code>shelter.aggregate_outcomes()</code>, moving filtering from Python into the database layer. A breed distribution bar chart was also added alongside the existing pie chart and geolocation map.
+  </p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-tag">Indexing</div>
+      <h3>Automatic Index Management</h3>
+      <p>Five single-field and two compound indexes created at startup with <code>background=True</code> for non-blocking builds. Idempotent — safe to call on every restart.</p>
+    </div>
+    <div class="card">
+      <div class="card-tag">Aggregation</div>
+      <h3>Pipeline Queries</h3>
+      <p><code>aggregate_outcomes()</code> computes grouped counts inside MongoDB, sending only summary rows over the network instead of all raw documents.</p>
+    </div>
+    <div class="card">
+      <div class="card-tag">Bulk Operations</div>
+      <h3>Resilient Import</h3>
+      <p><code>bulk_import()</code> with <code>ordered=False</code> continues past duplicates and reports inserted vs. skipped counts from the <code>BulkWriteError</code> details.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ COURSE OUTCOMES ════════ -->
+<section id="outcomes">
+  <div class="section-label">Course Outcomes</div>
+  <h2>Outcome Alignment</h2>
+  <p>The table below maps each CS 499 course outcome to the enhancement(s) that address it.</p>
+
+  <table class="outcomes-table">
+    <thead>
+      <tr>
+        <th>Course Outcome</th>
+        <th>Enhancement</th>
+        <th>Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Collaborative environments &amp; organizational decision-making</td>
+        <td><span class="check">✓</span> Code Review, Self-Assessment</td>
+        <td>Code review walkthrough; GitHub-based portfolio; Agile experience from CS 250</td>
+      </tr>
+      <tr>
+        <td>Professional-quality communications</td>
+        <td><span class="check">✓</span> All Narratives, Self-Assessment</td>
+        <td>Three milestone narratives explaining design decisions and trade-offs; dashboard as stakeholder communication</td>
+      </tr>
+      <tr>
+        <td>Algorithmic principles &amp; design trade-offs</td>
+        <td><span class="check">✓</span> Enhancement 2, Enhancement 3</td>
+        <td>RESCUE_CRITERIA data structure; compound boolean mask; background vs. foreground indexing; ordered vs. unordered bulk insert</td>
+      </tr>
+      <tr>
+        <td>Well-founded techniques &amp; tools</td>
+        <td><span class="check">✓</span> Enhancement 1, Enhancement 3</td>
+        <td>Logging module, type hints, input validation; MongoDB indexing, aggregation pipeline, bulk import, distinct queries</td>
+      </tr>
+      <tr>
+        <td>Security mindset</td>
+        <td><span class="check">✓</span> Enhancement 1, Enhancement 3</td>
+        <td>Credential encoding with quote_plus; input validation on all CRUD methods; empty-query guard on delete()</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ════════ FILES ════════ -->
+<section id="files">
+  <div class="section-label">Repository</div>
+  <h2>All Files</h2>
+  <p>Original and enhanced artifacts, narratives, and the professional self-assessment. All files are also available in the <a href="https://github.com/CodeCatalyst-1/CS-499-Capstone" target="_blank">GitHub repository</a>.</p>
+
+  <h3 style="margin-top:1.5rem; font-size:1rem; font-weight:600; color:var(--accent);">Original Artifacts</h3>
+  <div class="file-list">
+    <div class="file-item">
+      <div class="file-info">
+        <div class="file-icon py">PY</div>
+        <div>
+          <div class="file-name">crud_original.py</div>
+          <div class="file-desc">Original CRUD module from CS 340</div>
+        </div>
+      </div>
+      <a href="artifacts/original/crud_original.py" target="_blank">View</a>
+    </div>
+    <div class="file-item">
+      <div class="file-info">
+        <div class="file-icon nb">NB</div>
+        <div>
+          <div class="file-name">ProjectTwoDashboard_original.ipynb</div>
+          <div class="file-desc">Original dashboard notebook from CS 340</div>
+        </div>
+      </div>
+      <a href="artifacts/original/ProjectTwoDashboard_original.ipynb" target="_blank">View</a>
+    </div>
+    <div class="file-item">
+      <div class="file-info">
+        <div class="file-icon" style="background:#27ae60;">CSV</div>
+        <div>
+          <div class="file-name">aac_shelter_outcomes.csv</div>
+          <div class="file-desc">Austin Animal Center dataset (10,000 records)</div>
+        </div>
+      </div>
+      <a href="artifacts/original/aac_shelter_outcomes.csv" target="_blank">View</a>
+    </div>
+  </div>
+
+  <h3 style="margin-top:1.5rem; font-size:1rem; font-weight:600; color:var(--accent);">Enhanced Artifacts</h3>
+  <div class="file-list">
+    <div class="file-item">
+      <div class="file-info">
+        <div class="file-icon py">PY</div>
+        <div>
+          <div class="file-name">crud.py</div>
+          <div class="file-desc">Enhanced CRUD module with indexing, aggregation, bulk import</div>
+        </div>
+      </div>
+      <a href="artifacts/enhanced/crud.py" target="_blank">View</a>
+    </div>
+    <div class="file-item">
+      <div class="file-info">
+        <div class="file-icon nb">NB</div>
+        <div>
+          <div class="file-name">ProjectTwoDashboard.ipynb</div>
+          <div class="file-desc">Enhanced dashboard with corrected filters, aggregation, bar chart</div>
+        </div>
+      </div>
+      <a href="artifacts/enhanced/ProjectTwoDashboard.ipynb" target="_blank">View</a>
+    </div>
+  </div>
+
+  <h3 style="margin-top:1.5rem; font-size:1rem; font-weight:600; color:var(--accent);">Code Review, Narratives &amp; Self-Assessment</h3>
+  <div class="file-list">
+    <div class="file-item">
+      <div class="file-info">
+        <div class="file-icon docx">DOC</div>
+        <div>
+          <div class="file-name">Professional_Self_Assessment.docx</div>
+          <div class="file-desc">Professional self-assessment — ePortfolio introduction</div>
+        </div>
+      </div>
+      <a href="docs/Professional_Self_Assessment.docx" target="_blank">Download</a>
+    </div>
+    <div class="file-item">
+      <div class="file-info">
+        <div class="file-icon docx">DOC</div>
+        <div>
+          <div class="file-name">Code_Review.docx</div>
+          <div class="file-desc">Code Review: existing functionality, code analysis, enhancement plan</div>
+        </div>
+      </div>
+      <a href="docs/Code_Review.docx" target="_blank">Download</a>
+    </div>
+    <div class="file-item">
+      <div class="file-info">
+        <div class="file-icon docx">DOC</div>
+        <div>
+          <div class="file-name">Milestone2_Narrative_EthanChapman.docx</div>
+          <div class="file-desc">Enhancement 1: Software Design &amp; Engineering</div>
+        </div>
+      </div>
+      <a href="narratives/Milestone2_Narrative_EthanChapman.docx" target="_blank">Download</a>
+    </div>
+    <div class="file-item">
+      <div class="file-info">
+        <div class="file-icon docx">DOC</div>
+        <div>
+          <div class="file-name">Milestone3_Narrative.docx</div>
+          <div class="file-desc">Enhancement 2: Algorithms &amp; Data Structures</div>
+        </div>
+      </div>
+      <a href="narratives/Milestone3_Narrative.docx" target="_blank">Download</a>
+    </div>
+    <div class="file-item">
+      <div class="file-info">
+        <div class="file-icon docx">DOC</div>
+        <div>
+          <div class="file-name">Milestone4_Narrative.docx</div>
+          <div class="file-desc">Enhancement 3: Databases</div>
+        </div>
+      </div>
+      <a href="narratives/Milestone4_Narrative.docx" target="_blank">Download</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <p>Ethan Chapman · Southern New Hampshire University · CS 499 Computer Science Capstone · April 2026</p>
+  <p style="margin-top:0.5rem;"><a href="https://github.com/CodeCatalyst-1/CS-499-Capstone" target="_blank">GitHub Repository</a></p>
+</footer>
+
+</body>
+</html>
